@@ -5,6 +5,7 @@ pd.options.display.max_columns = None
 
 # function to upload data
 def upload_csv(directory, file_name):
+    print(f"uploading {file_name}")
     df_name = pd.read_csv(f"./data for project/{directory}/{file_name}.csv", header=None)
     print(df_name.shape)
     return df_name
@@ -48,27 +49,24 @@ def save_data(df_name, directory):
 # upload strokes data
 folder = "Strokes_data"
 file_list = ["strokes_2013", "strokes_2014", "strokes_2016"]
-columns_for_strokes = ['Year', 'LocationAbbr', 'LocationDesc', 'Class', 'Topic', 'Data_Value', 'Data_Value_Unit',
-                       'Data_Value_Type', 'LocationID']
+columns_for_strokes = ['Year', 'LocationAbbr', 'LocationDesc', 'Class', 'Topic', 'Data_Value', 'Data_Value_Unit', 'Data_Value_Type', 'LocationID']
 df_final = pd.DataFrame()
 
-for file in file_list:
-    df = upload_csv(folder, file)
-    df = set_index(df)
-    df = select_columns(df, columns_for_strokes)
-    df = drop_na(df, 'Data_Value')
-    df_final = join_data(df_final, df)
-    save_data(df_final, folder)
+# for file in file_list:
+#     df = upload_csv(folder, file)
+#     df = set_index(df)
+#     df = select_columns(df, columns_for_strokes)
+#     df = drop_na(df, 'Data_Value')
+#     df_final = join_data(df_final, df)
+#     save_data(df_final, folder)
 
 
 # upload air data
 folder = "Air_data"
 file = "US_AQI"
-columns_for_air = ['Date', 'AQI', 'Category', 'Defining Parameter', 'city_ascii', 'state_id', 'state_name',
-                   'population']
-df = upload_csv(folder, file)
-df = set_index(df)
-df = select_columns(df, columns_for_air)
-df = drop_na(df, 'AQI')
-save_data(df, folder)
-# df.to_csv(f"./data for project/{folder}/joined_data.csv")
+columns_for_air = ['Date', 'AQI', 'Category', 'Defining Parameter', 'city_ascii', 'state_id', 'state_name', 'population']
+# df = upload_csv(folder, file)
+# df = set_index(df)
+# df = select_columns(df, columns_for_air)
+# df = drop_na(df, 'AQI')
+# save_data(df, folder)
