@@ -1,12 +1,6 @@
 import pandas as pd
 pd.options.display.max_columns = None
 
-
-def get_data(route):
-    df = pd.read_csv(route)
-    return df
-
-df_strokes = get_data("./data for project/Strokes_data_new/joined_data.csv")
 # group by year and location
 def explore_strokes(df, parameter):
     mask = df.groupby(["Year", "LocationAbbr", "LocationDesc"])['Data_Value']
@@ -19,13 +13,7 @@ def explore_strokes(df, parameter):
     df = df.reset_index()
     return df
 
-strokes_per_year = explore_strokes(df_strokes, "mean")
-
-def save_data(df_name, directory, name):
-    df_name.to_csv(f"./data for project/{directory}/{name}.csv")
-    print(f"The data saved to {directory}")
-    return
-save_data(strokes_per_year, "combined", "strokes_per_year")
+# strokes_per_year = explore_strokes(df_strokes, "mean")
 
 
 
