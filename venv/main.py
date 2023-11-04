@@ -3,9 +3,16 @@ import utils
 import upload_data_functions
 import explore_air_data
 import explore_strokes_data
+from fastapi import FastAPI
 
 pd.options.display.max_columns = None
 
+#
+# app = FastAPI()
+#
+# @app.post("/")
+# async def root():
+#     return {"message": "Hello World"}
 
 if __name__ == "__main__":
 
